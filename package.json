@@ -1,0 +1,19 @@
+{
+    "devDependencies": {
+        "bs-json": "^0.2.1",
+        "bs-platform": "^1.9.1",
+        "nwb": "^0.18.10"
+    },
+    "scripts": {
+        "start": "react run src/index.js",
+        "build": "bsb -make-world",
+        "watch": "bsb -make-world -w",
+        "clean": "bsb -clean-world"
+    },
+    "dependencies": {
+        "react": "^15.6.1",
+        "react-dom": "^15.6.1",
+        "react-redux": "^5.0.6",
+        "redux": "^3.7.2"
+    }
+}
