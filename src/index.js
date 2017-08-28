@@ -4,7 +4,7 @@ import { Provider } from "react-redux"
 import { compose, createStore, applyMiddleware } from "redux"
 
 import App from "./App.js"
-import { counter } from "../lib/js/src/reducers.js"
+import { todos } from "../lib/js/src/reducers.js"
 import { init } from "../lib/js/src/actions.js"
 
 function wrapInit(reducer) {
@@ -27,9 +27,9 @@ function tag() {
 }
 
 const store = createStore(
-    wrapInit(counter),
+    wrapInit(todos),
     {
-        count: 0,
+        todos: [],
     },
     applyMiddleware(tag)
 )
