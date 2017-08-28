@@ -8,35 +8,35 @@ import { todos } from "../lib/js/src/reducers.js"
 import { init } from "../lib/js/src/actions.js"
 
 function wrapInit(reducer) {
-    return (state, action) => {
-        if (action.type === "@@redux/INIT") {
-            return state
-        }
-        return reducer(state, action)
+  return (state, action) => {
+    if (action.type === "@@redux/INIT") {
+      return state
     }
+    return reducer(state, action)
+  }
 }
 
 function tag() {
-    return next => action => {
-        next({
-            // Should prob get the type from action's tag?
-            type: `tagged_${action.tag}`,
-            value: action,
-        })
-    }
+  return next => action => {
+    next({
+      // Should prob get the type from action's tag?
+      type: `tagged_${action.tag}`,
+      value: action,
+    })
+  }
 }
 
 const store = createStore(
-    wrapInit(todos),
-    {
-        todos: [],
-    },
-    applyMiddleware(tag)
+  wrapInit(todos),
+  {
+    todos: [],
+  },
+  applyMiddleware(tag)
 )
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById("app")
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("app")
 )
