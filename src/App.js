@@ -28,8 +28,10 @@ const Todo = props =>
 class App extends Component {
   onSubmit = e => {
     e.preventDefault()
-    this.props.dispatch(add(this.input.value))
-    this.input.value = ""
+    if (this.input.value) {
+      this.props.dispatch(add(this.input.value))
+      this.input.value = ""
+    }
   }
 
   render() {
