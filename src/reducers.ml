@@ -6,18 +6,21 @@ let make_todo id text complete = [%bs.obj {
   complete = complete;
 }]
 
-let object_of_todos todos = [%bs.obj {
+let state_of_todos todos = [%bs.obj {
   todos = todos
 }]
 
-let add_todo todos text =
+let add_todo state text =
+  let todos = state##todos in
   Array.append
     todos
     [|
       make_todo (Array.length todos) text false
     |]
+  |> state_of_todos
 
-let set_completeness todos id complete =
+let set_completeness state id complete =
+  let todos = state##todos in
   Array.map
     (fun todo ->
        if id = todo##id
@@ -25,9 +28,9 @@ let set_completeness todos id complete =
        else todo
     )
     todos
+  |> state_of_todos
 
-let todos = unfold @@ fun state ->
-  function
-  | Add text -> add_todo state##todos text |> object_of_todos
-  | Complete id -> set_completeness state##todos id true |> object_of_todos
-  | Uncomplete id -> set_completeness state##todos id false |> object_of_todos
+let todos = unfold @@ fun state -> function
+  | Add text -> add_todo state text
+  | Complete id -> set_completeness state id true
+  | Uncomplete id -> set_completeness state id false
