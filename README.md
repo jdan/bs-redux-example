@@ -1,5 +1,7 @@
 ## bs-redux-example
 
+![A todo list with the title "1 task remaining" and three items. The first, "make a todo list" is checked off. The second, "master ocaml" is not checked off. The third, "publish findings on github" is checked off.](http://i.imgur.com/bRYyhfY.png)
+
 This is an experiment in writing [Redux](http://redux.js.org/) reducers for a React app in OCaml with [BuckleScript](https://github.com/bucklescript/bucklescript).
 
 I'm using [nwb](https://github.com/insin/nwb) to run the React app because it's a very handy project.
