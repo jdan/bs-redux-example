@@ -30,7 +30,7 @@ let set_completeness state id complete =
     todos
   |> state_of_todos
 
-let todos = unfold @@ fun state -> function
+let todos : (state -> action -> state) = unfold @@ fun state -> function
   | Add text -> add_todo state text
   | Complete id -> set_completeness state id true
   | Uncomplete id -> set_completeness state id false
