@@ -10,7 +10,7 @@ import { init } from "../lib/js/src/actions.js"
 /**
  * Hacks to make this work with OCaml :)
  *
- * Below are two functions `wrapInit`, which wraps are reducer,
+ * Below are two functions `wrapInit`, which wraps our reducer,
  * and `tag`, which is used as a middleware.
  */
 
