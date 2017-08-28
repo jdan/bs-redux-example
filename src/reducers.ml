@@ -1,12 +1,12 @@
 open Types;;
 
-let make_todo id text complete = [%bs.obj {
+let make_todo id text complete : todo = [%bs.obj {
   id = id;
   text = text;
   complete = complete;
 }]
 
-let state_of_todos todos = [%bs.obj {
+let state_of_todos todos : state = [%bs.obj {
   todos = todos
 }]
 
