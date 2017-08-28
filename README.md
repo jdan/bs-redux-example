@@ -11,5 +11,5 @@ I'm using [nwb](https://github.com/insin/nwb) to run the React app because it's 
 ```
 npm i
 npm run build
-npm run state
+npm run start
 ```
