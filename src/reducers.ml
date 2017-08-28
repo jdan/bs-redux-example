@@ -17,15 +17,13 @@ let rec set_completeness todos id complete = match todos with
     }] :: tail
     else todo :: set_completeness tail id complete
 
+let object_of_todos todos = [%bs.obj {
+  todos = todos
+}]
+
 let todos = unfold @@ fun state ->
   let state_todos = state##todos |> Array.to_list in
   function
-  | Add text -> [%bs.obj {
-    todos = add_todo state_todos text |> Array.of_list
-  }]
-  | Complete id -> [%bs.obj {
-    todos = set_completeness state_todos id true |> Array.of_list
-  }]
-  | Uncomplete id -> [%bs.obj {
-    todos = set_completeness state_todos id false |> Array.of_list
-  }]
+  | Add text -> add_todo state_todos text |> Array.of_list |> object_of_todos
+  | Complete id -> set_completeness state_todos id true |> Array.of_list |> object_of_todos
+  | Uncomplete id -> set_completeness state_todos id false |> Array.of_list |> object_of_todos
